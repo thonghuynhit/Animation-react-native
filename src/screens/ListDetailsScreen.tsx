@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { View, Text, FlatList, Image, StyleSheet, Animated } from 'react-native'
+import { View, Text, FlatList, Image, StyleSheet, Animated, RefreshControl } from 'react-native'
 import axios from 'axios'
 import { TEXTCOLOR, MAINCOLOR, } from '../constrans/StylexConstrans'
 import faker from 'faker'
+import LoadingComponent from '../components/LoadingComponent'
 
 faker.seed(10)
 const SPACING = 20
@@ -12,6 +13,7 @@ const ITEMSIZE = AVATARSIZE + SPACING * 3
 
 export default function ListDetailsScreen() {
     const [dataList, setDataList] = useState<any[]>([])
+    const [refreshing, setRefreshing] = useState<boolean>(false)
     const scrollY = useRef(new Animated.Value(0)).current
 
     useEffect(() => {
@@ -22,7 +24,11 @@ export default function ListDetailsScreen() {
         const { data } = await axios.get(`https://reqres.in/api/users?page=${id}`)
         setDataList((prevState: any) => [...prevState, ...data.data])
     }
-    console.log(dataList)
+
+    const handleRefreshing = () => {
+        setRefreshing(true)
+        setTimeout(() => setRefreshing(false), 3000)
+    }
 
     return (
         <View>
@@ -37,6 +43,9 @@ export default function ListDetailsScreen() {
                 contentContainerStyle={{
                     padding: SPACING,
                 }}
+                refreshing={refreshing}
+                onRefresh={handleRefreshing}
+                // refreshControl={<RefreshControl />}
                 onScroll={Animated.event(
                     [{ nativeEvent: { contentOffset: {y: scrollY }} }],
                     { useNativeDriver: false }
@@ -64,7 +73,7 @@ export default function ListDetailsScreen() {
 
                     const opacity = scrollY.interpolate({
                         inputRange: inputOpacity,
-                        outputRange: [1, 1, 1, 0]
+                        outputRange: [.997, 1, 1, 0]
                     })
 
                     return <Animated.View style={{...styles.listContainer, transform: [{scale}], opacity}}>
