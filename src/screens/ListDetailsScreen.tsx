@@ -45,7 +45,6 @@ export default function ListDetailsScreen() {
                 }}
                 refreshing={refreshing}
                 onRefresh={handleRefreshing}
-                // refreshControl={<RefreshControl />}
                 onScroll={Animated.event(
                     [{ nativeEvent: { contentOffset: {y: scrollY }} }],
                     { useNativeDriver: false }
