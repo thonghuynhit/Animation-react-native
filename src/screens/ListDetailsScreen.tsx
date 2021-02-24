@@ -10,7 +10,6 @@ const SPACING = 20
 const AVATARSIZE = 56
 const ITEMSIZE = AVATARSIZE + SPACING * 3
 
-
 export default function ListDetailsScreen() {
     const [dataList, setDataList] = useState<any[]>([])
     const [refreshing, setRefreshing] = useState<boolean>(false)
