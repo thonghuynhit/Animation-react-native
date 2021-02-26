@@ -3,6 +3,7 @@ import { View, Image } from 'react-native'
 
 
 export default function LoadingComponent() {
+    
     return (
         <View>
             <Image 
