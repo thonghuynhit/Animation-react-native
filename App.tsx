@@ -10,9 +10,6 @@ import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
-  View,
-  Text,
   StatusBar,
 } from 'react-native';
 import IndexTabNavigation from './src/navigations/index'
