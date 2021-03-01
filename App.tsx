@@ -15,6 +15,7 @@ import {
 import IndexTabNavigation from './src/navigations/index'
 
 const App = () => {
+  
   return (
     <>
       <StatusBar barStyle="dark-content" />
