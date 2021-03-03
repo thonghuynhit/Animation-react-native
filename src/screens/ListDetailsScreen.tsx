@@ -3,7 +3,7 @@ import { View, Text, FlatList, Image, StyleSheet, Animated, RefreshControl } fro
 import axios from 'axios'
 import { TEXTCOLOR, MAINCOLOR, } from '../constrans/StylexConstrans'
 import faker from 'faker'
-import LoadingComponent from '../components/LoadingComponent'
+
 
 faker.seed(10)
 const SPACING = 20
@@ -66,7 +66,7 @@ export default function ListDetailsScreen() {
 
                     const scale = scrollY.interpolate({
                         inputRange,
-                        outputRange: [.9993, 1, 1, 0]
+                        outputRange: [.999, 1, 1, 0]
                     })
 
                     const opacity = scrollY.interpolate({
