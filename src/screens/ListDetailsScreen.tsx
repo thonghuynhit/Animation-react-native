@@ -4,7 +4,6 @@ import axios from 'axios'
 import { TEXTCOLOR, MAINCOLOR, } from '../constrans/StylexConstrans'
 import faker from 'faker'
 
-
 faker.seed(10)
 const SPACING = 20
 const AVATARSIZE = 56
