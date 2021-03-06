@@ -1,15 +1,21 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { View, Text, FlatList, Image, StyleSheet, Animated, RefreshControl } from 'react-native'
+import { View, Text, FlatList, Image, StyleSheet, Animated, TouchableOpacity } from 'react-native'
 import axios from 'axios'
 import { TEXTCOLOR, MAINCOLOR, } from '../constrans/StylexConstrans'
 import faker from 'faker'
+
+interface TypeProps {
+    navigation: any
+}
 
 faker.seed(10)
 const SPACING = 20
 const AVATARSIZE = 56
 const ITEMSIZE = AVATARSIZE + SPACING * 3
 
-export default function ListDetailsScreen() {
+export default function ListDetailsScreen(props: TypeProps) {
+    const {navigation} = props
+
     const [dataList, setDataList] = useState<any[]>([])
     const [refreshing, setRefreshing] = useState<boolean>(false)
     const scrollY = useRef(new Animated.Value(0)).current
@@ -29,7 +35,7 @@ export default function ListDetailsScreen() {
     }
 
     return (
-        <View>
+        <View style={[styles.container]}>
             <Image 
                 source={require('../assets/images/backgroundListDetails.jpg')}
                 style={StyleSheet.absoluteFillObject}
@@ -74,12 +80,14 @@ export default function ListDetailsScreen() {
                     })
 
                     return <Animated.View style={{...styles.listContainer, transform: [{scale}], opacity}}>
-                        <Image source={{uri: item.avatar}} style={styles.listAvatar} />
-                        <View style={styles.listContent}>
-                            <Text style={styles.listUsername}>{item.first_name} {item.last_name}</Text>
-                            <Text style={styles.listJobs}>{faker.name.jobTitle().length > 30 ? faker.name.jobTitle().slice(0, 29) + "..." : faker.name.jobTitle()}</Text>
-                            <Text style={styles.listEmail}>{item.email}</Text>
-                        </View>
+                        <TouchableOpacity onPress={() => navigation.navigate('AccodionScreen')} style={{flexDirection: 'row'}}>
+                            <Image source={{uri: item.avatar}} style={styles.listAvatar} />
+                            <View style={styles.listContent}>
+                                <Text style={styles.listUsername}>{item.first_name} {item.last_name}</Text>
+                                <Text style={styles.listJobs}>{faker.name.jobTitle().length > 30 ? faker.name.jobTitle().slice(0, 29) + "..." : faker.name.jobTitle()}</Text>
+                                <Text style={styles.listEmail}>{item.email}</Text>
+                            </View>
+                        </TouchableOpacity>
                     </Animated.View>
                 }}
             />
@@ -88,6 +96,10 @@ export default function ListDetailsScreen() {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+
+    },
     listContainer: {
         flexDirection: 'row',
         backgroundColor: 'rgba(255, 255, 255, .85)',
