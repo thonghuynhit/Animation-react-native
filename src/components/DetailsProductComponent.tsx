@@ -21,12 +21,27 @@ const DetailsPropductComponent: React.FC<TypeProps> = (props) => {
         inputRange,
         outputRange: [0, 1, 0]
     })
+
+    const translateX = scrollX.interpolate({
+        inputRange,
+        outputRange: [SCREEN_WIDTH * 0.5, 0, - SCREEN_WIDTH * 0.5]
+    })
+
+    const opacity = scrollX.interpolate({
+        inputRange: [index * SCREEN_WIDTH - 1, index * SCREEN_WIDTH, index * SCREEN_WIDTH + 1],
+        outputRange: [0.994, 1, 0.994]
+    })
+
+    const rotate = scrollX.interpolate({
+        inputRange,
+        outputRange: ['180deg', '0deg', '-180deg']
+    })
     return (
-        <View style={[styles.container, {transform: [{scale}]}]}>
-            <Animated.Image source={image} style={[styles.image]} />
+        <View style={[styles.container]}>
+            <Animated.Image source={image} style={[styles.image, {transform: [{scale}]}]} />
             <View style={[styles.containerContent]}>
-                <Text style={[styles.title]}>{name}</Text>
-                <Text style={[styles.description]}>{description}</Text>
+                <Animated.Text style={[styles.title, {transform: [{translateX}], opacity}]}>{name}</Animated.Text>
+                <Animated.Text style={[styles.description, {transform: [{rotate}]}]}>{description}</Animated.Text>
             </View>
         </View>
     )
