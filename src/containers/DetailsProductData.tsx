@@ -1,7 +1,7 @@
 export default [
     {
         type: 'Humlan P',
-        image: require('../assets/images/headphone.png'),
+        image: require('../assets/images/headphone1.png'),
         heading: 'Vibrant Colors',
         key: 1,
         color: '#d35400',
@@ -9,7 +9,7 @@ export default [
     },
     {
         type: 'Humlan Q',
-        image: require('../assets/images/headphone.png'),
+        image: require('../assets/images/headphone2.png'),
         heading: 'Vibrant Colors',
         key: 2,
         color: '#2ecc71',
@@ -17,7 +17,7 @@ export default [
     },
     {
         type: 'Humlan M',
-        image: require('../assets/images/headphone.png'),
+        image: require('../assets/images/headphone1.png'),
         heading: 'Vibrant Colors',
         key: 3,
         color: '#34495e',
@@ -25,7 +25,7 @@ export default [
     },
     {
         type: 'Humlan K',
-        image: require('../assets/images/headphone.png'),
+        image: require('../assets/images/headphone2.png'),
         heading: 'Vibrant Colors',
         key: 4,
         color: '#e74c3c',
@@ -33,7 +33,7 @@ export default [
     },
     {
         type: 'Humlan H',
-        image: require('../assets/images/headphone.png'),
+        image: require('../assets/images/headphone1.png'),
         heading: 'Vibrant Colors',
         key: 5,
         color: '#1abc9c',

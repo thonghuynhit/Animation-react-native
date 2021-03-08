@@ -11,7 +11,6 @@ interface TypeProps {
 
 }
 
-const IMAGE_SIZE = 200
 const SCREEN_WIDTH = Dimensions.get('screen').width
 
 const DetailsPropductComponent: React.FC<TypeProps> = (props) => {
