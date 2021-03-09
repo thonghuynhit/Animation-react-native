@@ -10,7 +10,8 @@ interface TypeProps {
 
 const HEIGHT_TICKET = 40
 const SCREEN_WIDTH = Dimensions.get('screen').width
-const CIRCLE_SIZE =   SCREEN_WIDTH * .6
+const CIRCLE_SIZE = SCREEN_WIDTH * .6
+const DOT_SIZE = 30
 
 const DetailsProductScreen: React.FC<TypeProps> = () => {
     const scrollX = useRef<any>(new Animated.Value(0)).current
@@ -31,9 +32,9 @@ const DetailsProductScreen: React.FC<TypeProps> = () => {
                     [{nativeEvent: {contentOffset: {x: scrollX}}}],
                     {useNativeDriver: true}
                 )}
-                // scrollEventThrottle={16}
+                scrollEventThrottle={16}
             />
-            <Pagination />
+            <Pagination scrollX={scrollX} />
         </View>
     )
 }
@@ -46,18 +47,36 @@ const styles = StyleSheet.create({
 
 })
 
-const Pagination = () => {
+const Pagination = ({scrollX}: any) => {
+    const inputRange = [-SCREEN_WIDTH, 0, SCREEN_WIDTH]
+    const translateX = scrollX.interpolate({
+        inputRange,
+        outputRange: [-DOT_SIZE, 0, DOT_SIZE]
+    })
     return (
         <View style={{
             flexDirection: 'row',
             justifyContent: 'flex-end',
             marginRight: 10,
             flex: 1,
-
         }}>
+            <Animated.View style={{
+                height: DOT_SIZE,
+                width: DOT_SIZE,
+                borderRadius: DOT_SIZE,
+                borderColor: '#ddd',
+                borderWidth: 2,
+                left: DOT_SIZE,
+                transform: [{translateX}]
+            }} />
             {dataProductDetails.map(({key, color}) => (
-                <View key={key}>
-                    <View style={{backgroundColor: color, height: 16, width: 16, borderRadius: 8, margin: 10}}></View>
+                <View key={key} style={{
+                    height: DOT_SIZE,
+                    width: DOT_SIZE,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}>
+                    <View style={{backgroundColor: color, height: DOT_SIZE * 0.4, width: DOT_SIZE * 0.4, borderRadius: 8,}}></View>
                 </View>
             ))}
         </View>
@@ -105,12 +124,17 @@ const Circle = ({scrollX}: any) => {
                 const inputRange = [(index - 1) * SCREEN_WIDTH, index * SCREEN_WIDTH, (index + 1) * SCREEN_WIDTH]
                 const scale = scrollX.interpolate({
                     inputRange,
-                    outputRange: [0, 1, 0],
+                    outputRange: [0.5, 1, 0.5],
                     extrapolate: 'clamp'
                 })
+                const opacity = scrollX.interpolate({
+                    inputRange,
+                    outputRange: [0, 0.2, 0]
+                })
 
-                return (<Animated.View style={{
+                return (<Animated.View key={index} style={{
                     transform: [{scale}],
+                    opacity,
                     backgroundColor: color,
                     height: CIRCLE_SIZE,
                     width: CIRCLE_SIZE,
