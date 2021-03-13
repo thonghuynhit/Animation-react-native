@@ -1,6 +1,6 @@
 export const SLIDE_DATA = [
     {title: 'Animation Flatlist Scroll', color: '#1abc9c', navigateName: 'DetailsProductScreen'},
-    {title: 'Da Nang', color: '#2ecc71', navigateName: 'DetailsProductScreen'},
+    {title: 'Share Element Navigation V5', color: '#2ecc71', navigateName: 'ShareElementScreen'},
     {title: 'Nha Trang', color: '#e74c3c', navigateName: 'DetailsProductScreen'},
     {title: 'Hoi An', color: '#d35400', navigateName: 'DetailsProductScreen'},
     {title: 'Nghe An', color: '#34495e', navigateName: 'DetailsProductScreen'},

@@ -93,8 +93,8 @@ const Ticket = ({scrollX}: any) => {
 
     return (
         <View style={{position: 'absolute', zIndex: 1, height: HEIGHT_TICKET, overflow: 'hidden', marginLeft: 20, marginTop: 20}}>
-            {dataProductDetails.map(({type}) => (
-                <Animated.View style={{
+            {dataProductDetails.map(({type}, index) => (
+                <Animated.View key={index} style={{
                     top: 0,
                     left: 0,
                     justifyContent: 'center',
