@@ -11,4 +11,5 @@ export default function ShareElementScreen() {
 }
 const styles = StyleSheet.create({
     container: {}
+    
 })
