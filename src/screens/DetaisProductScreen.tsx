@@ -39,6 +39,7 @@ const DetailsProductScreen: React.FC<TypeProps> = () => {
     )
 }
 
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
